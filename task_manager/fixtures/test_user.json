@@ -1,0 +1,21 @@
+{
+    "create_success": {
+        "username": "test",
+        "first_name": "testik",
+        "last_name": "testovich",
+        "password1": "123456789",
+        "password2": "123456789"
+    },
+    "existing": {
+        "username": "Honda",
+        "first_name": "Civic",
+        "last_name": "Galant",
+        "password": "123456789"
+    },
+    "new": {
+        "username": "Honda",
+        "first_name": "Civic",
+        "last_name": "Accord",
+        "password": "123456789"
+    }
+}

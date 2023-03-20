@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+
+{% block content %}
+    <div class="container">
+        <table class="table">
+            <thead class="table-info">
+                <tr class="text-center text-align-center">
+                    <th scope="col">ID</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Full name</th>
+                    <th scope="col">Creatation date</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if users %}
+                    {% for user in users%}
+                        <tr class="border-bottom border-info text-center">
+                            <th scope="row">{{ user.id }}</th>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.first_name }} {{ user.last_name }}</td>
+                            <td>{{ user.date_joined }}</td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-info rounded-pill my-md-1" href="{% url 'users:edit_user' user.id %}">Update</a>
+                                <br>
+                                <a class="btn btn-sm btn-outline-info rounded-pill" href="{% url 'users:delete_user' user.id %}">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

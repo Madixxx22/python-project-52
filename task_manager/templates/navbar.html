@@ -1,0 +1,27 @@
+{% load bootstrap4 %}
+{% load i18n %}
+
+<nav class="nav navbar-expand-lg navbar-light align-items-center px-md-4 p-3 mb-3 border-bottom border-info shadow-sm">
+    <a class="navbar-brand text-dark" href="{% url 'homepage' %}">{% trans 'Task manager' %}</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link text-info" href="{% url 'users:show_users' %}">{% trans 'Users' %}</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+                <li class="nav-item mr-2">
+                    <a class="btn btn-outline-info rounded-pill" href="{% url 'logout' %}">{% trans 'Log out' %}</a>
+                </li>
+            {% else %}
+                <li class="nav-item mr-2">
+                    <a class="btn btn-outline-info rounded-pill" href="{% url 'login' %}">{% trans 'Sign in' %}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-info rounded-pill" href="{% url 'users:register' %}">{% trans 'Sign up' %}</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
