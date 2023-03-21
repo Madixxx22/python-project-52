@@ -8,6 +8,11 @@
             <li class="nav-item">
                 <a class="nav-link text-info" href="{% url 'users:show_users' %}">{% trans 'Users' %}</a>
             </li>
+            {% if user.is_authenticated %}
+                <li class="nav-item mr-2">
+                    <a class="nav-link text-info" href="{% url 'statuses:show_statuses' %}">{% trans 'Statuses' %}</a>
+                </li>
+            {% endif %}
         </ul>
         <ul class="navbar-nav">
             {% if user.is_authenticated %}

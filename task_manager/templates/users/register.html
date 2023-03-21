@@ -5,11 +5,11 @@
 
 {% block content %}
     <div class="container">
-        <h1>Registration</h1>
+        <h1 class="h1 text-dark">{% trans 'Registration' %}</h1>
         <form method="post">
             {% csrf_token %}
             {% bootstrap_form form %}
-            <input type="submit" class="btn btn-info" value="Register">
+            <input type="submit" class="btn btn-info rounded-pill" value="{% trans 'Register' %}">
         </form>
     </div>
 {% endblock %}

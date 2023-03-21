@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+<div class="container">
+    <h1 class="h1 text-dark">{% trans 'Delete status' %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p class="text-dark">{% trans 'Are you sure you want to delete the' %} <a class="text-decoration-none text-info" href="{% url 'statuses:show_statuses' %}">{{ status.name }}</a>?</p>
+        <input type="submit" class="btn btn-danger rounded-pill w-25" value="{% trans 'Delete' %}">
+    </form>
+</div>
+{% endblock %}

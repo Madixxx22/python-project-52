@@ -2,13 +2,14 @@
 {% load bootstrap4 %}
 {% load i18n %}
 
+
 {% block content %}
     <div class="container">
-        <h1 class="h1 text-dark">{% trans 'User change' %}</h1>
+        <h1 class="h1 text-dark">{% trans 'Create status' %}</h1>
         <form method="post">
             {% csrf_token %}
             {% bootstrap_form form %}
-            <input type="submit" class="btn btn-info rounded-pill w-25" value="{% trans 'Edit' %}">
+            <input type="submit" class="btn btn-info rounded-pill" value="{% trans 'Create' %}">
         </form>
     </div>
 {% endblock %}
