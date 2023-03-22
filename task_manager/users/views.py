@@ -6,7 +6,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from task_manager.users.forms import CustomUserCreationForm, CustomUserChangeForm
+from task_manager.users.forms import CustomUserCreationForm, \
+                                     CustomUserChangeForm
 from task_manager.users.models import CustomUser
 
 

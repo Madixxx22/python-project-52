@@ -7,6 +7,8 @@ lint:
 test:
 	poetry run python3 manage.py test
 
+check: test lint
+
 dev:
 	poetry run python manage.py runserver
 

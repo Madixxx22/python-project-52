@@ -7,6 +7,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from task_manager.statuses.models import Statuses
 from task_manager.statuses.forms import StatusForm
 
+
 # Create your views here.
 class StatusesView(LoginRequiredMixin, ListView):
     model = Statuses

@@ -6,6 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 
 class LoginForm(AuthenticationForm):
     password = forms.CharField(label=_("Password"))
+
     class Meta():
         model = CustomUser
         fields = ('username', 'password')

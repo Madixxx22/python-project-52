@@ -8,6 +8,7 @@ from task_manager.users.models import CustomUser
 class CustomUserCreationForm(UserCreationForm):
     first_name = forms.CharField(label=_("First Name"))
     last_name = forms.CharField(label=_("Last Name"))
+
     class Meta:
         model = CustomUser
         fields = ("username", "first_name", "last_name")

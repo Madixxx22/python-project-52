@@ -28,17 +28,28 @@ class TestUser(TestCase):
         self.assertEqual(response.status_code, 200)
 
         create_success = self.test_data['create_success']
-        response = self.client.post(reverse('users:register'), create_success, follow=True)
+        response = self.client.post(
+            reverse('users:register'),
+            create_success,
+            follow=True
+        )
         self.assertEqual(response.status_code, 200)
-        created_user = CustomUser.objects.get(username=create_success['username'])
+        created_user = CustomUser.objects.get(
+            username=create_success['username']
+        )
         self.assertUser(created_user, create_success)
 
     def test_update_views(self):
         user = CustomUser.objects.get(pk=3)
         self.client.force_login(user)
         exist_user_data = self.test_data['existing']
-        exist_user = CustomUser.objects.get(username=exist_user_data['username'])
-        response = self.client.get(reverse('users:edit_user', args=[exist_user.pk]), follow=True)
+        exist_user = CustomUser.objects.get(
+            username=exist_user_data['username']
+        )
+        response = self.client.get(
+            reverse('users:edit_user', args=[exist_user.pk]),
+            follow=True
+        )
         self.assertEqual(response.status_code, 200)
 
     def test_update(self):
@@ -46,7 +57,9 @@ class TestUser(TestCase):
         new_user_data = self.test_data['new']
         user = CustomUser.objects.get(username=exist_user_data['username'])
         self.client.force_login(user)
-        exist_user = CustomUser.objects.get(username=exist_user_data['username'])
+        exist_user = CustomUser.objects.get(
+            username=exist_user_data['username']
+        )
         response = self.client.post(
             reverse('users:edit_user', args=[exist_user.pk]),
             new_user_data,
@@ -54,21 +67,29 @@ class TestUser(TestCase):
         )
 
         self.assertRedirects(response, reverse('users:show_users'))
-        updated_user = CustomUser.objects.get(username=new_user_data['username'])
+        updated_user = CustomUser.objects.get(
+            username=new_user_data['username']
+        )
         self.assertUser(updated_user, new_user_data)
 
     def test_delete_view(self):
         exist_user_data = self.test_data['existing']
         user = CustomUser.objects.get(username=exist_user_data['username'])
         self.client.force_login(user)
-        response = self.client.get(reverse('users:delete_user', args=[user.pk]), follow=True)
+        response = self.client.get(
+            reverse('users:delete_user', args=[user.pk]),
+            follow=True
+        )
         self.assertEqual(response.status_code, 200)
 
     def test_delete(self):
         exist_user_data = self.test_data['existing']
         user = CustomUser.objects.get(username=exist_user_data['username'])
         self.client.force_login(user)
-        response = self.client.post(reverse('users:delete_user', args=[user.pk]), follow=True)
+        response = self.client.post(
+            reverse('users:delete_user', args=[user.pk]),
+            follow=True
+        )
         self.assertEqual(response.status_code, 200)
         self.assertRedirects(response, reverse('users:show_users'))
         with self.assertRaises(ObjectDoesNotExist):
