@@ -84,8 +84,10 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 test_db = os.getenv('TEST_DB')
 if test_db == 'True':
     database_url = os.getenv('DATABASE_URL_TEST')
-else:
+elif test_db:
     database_url = os.getenv('DATABASE_URL_PRODUCTION')
+else:
+    database_url = 'sqlite:///db.sqlite3'
 DATABASES = {
     'default': dj_database_url.config(
         default=database_url,
