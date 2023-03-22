@@ -84,10 +84,8 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 test_db = os.getenv('TEST_DB')
 if test_db == 'True':
     database_url = os.getenv('DATABASE_URL_TEST')
-elif test_db:
-    database_url = os.getenv('DATABASE_URL_PRODUCTION')
 else:
-    database_url = 'sqlite:///db.sqlite3'
+    database_url = os.getenv('DATABASE_URL_PRODUCTION')
 DATABASES = {
     'default': dj_database_url.config(
         default=database_url,
@@ -122,7 +120,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = os.getenv('LANGUAGE_CODE')
 
 TIME_ZONE = 'UTC'
 
