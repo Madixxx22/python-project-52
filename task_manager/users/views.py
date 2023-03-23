@@ -41,17 +41,25 @@ class UserUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         if request.user.id == self.get_object().id:
             return super().dispatch(request, *args, **kwargs)
         error(request, _("You do not have permission to change the user"))
-        return redirect(self.success_url)
+        if request.user.is_authenticated:
+            return redirect(self.success_url)
+        else:
+            return redirect(self.login_url)
 
 
-class UserDeleteView(LoginRequiredMixin, DeleteView):
+class UserDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = CustomUser
     template_name = 'users/delete_user.html'
     success_url = reverse_lazy('users:show_users')
     context_object_name = 'user'
+    login_url = reverse_lazy('login')
+    success_message = _("User is deleted successfully")
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.id == self.get_object().id:
             return super().dispatch(request, *args, **kwargs)
         error(request, _("You do not have permission to delete the user"))
-        return redirect(self.success_url)
+        if request.user.is_authenticated:
+            return redirect(self.success_url)
+        else:
+            return redirect(self.login_url)

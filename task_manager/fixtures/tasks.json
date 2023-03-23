@@ -1,0 +1,38 @@
+[
+    {
+        "model": "tasks.tasks",
+        "pk": 1,
+        "fields": {
+            "name": "create automobile",
+            "description": "Civic",
+            "created_date": "2023-03-23",
+            "author": 3,
+            "status": 1,
+            "executor": 3
+        }
+    },
+    {
+        "model": "tasks.tasks",
+        "pk": 2,
+        "fields": {
+            "name": "create shotgun",
+            "description": "saiga",
+            "created_date": "2023-03-23",
+            "author": 2,
+            "status": 2,
+            "executor": 3
+        }
+    },
+    {
+        "model": "tasks.tasks",
+        "pk": 3,
+        "fields": {
+            "name": "cod",
+            "description": "frustration",
+            "created_date": "2023-03-23",
+            "author": 1,
+            "status": 3,
+            "executor": 2
+        }
+    }
+]

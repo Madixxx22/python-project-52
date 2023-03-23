@@ -1,0 +1,20 @@
+{
+    "create_success": {
+        "name": "Mazda",
+        "description": "Rx-7",
+        "status": 3,
+        "executor": 3
+    },
+    "existing": {
+        "name": "create automobile",
+        "description": "Civic",
+        "status": 1,
+        "executor": 3
+    },
+    "new": {
+        "name": "Honda",
+        "description": "Civic X",
+        "status": 1,
+        "executor": 3
+    }
+}

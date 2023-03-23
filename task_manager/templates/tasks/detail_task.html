@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+<div class="container">
+    <h1 class="h1 text-dark pl-4">{% trans 'View task' %}</h1>
+    <div class = "container rounded-pill bg-info pb-2 pl-5 pt-2">
+        <h1 class="h2 text-white"> {{ task.name }}</h1>
+    </div>
+    <p class="mt-3 pb-2 pl-4 text-dark border-bottom border-info rounded-lg">{{ task.description }}</p>
+    <div class = "container ml-3">
+        <table class="table table-borderless" data-test="url"> 
+        <tbody>
+          <tr>
+            <td>{% trans 'Author' %}</td>
+            <td>{{ task.author }}</td>
+          </tr>
+          <tr>
+            <td>{% trans 'Executor' %}</td>
+            <td>{{ task.executor }}</td>
+          </tr>
+          <tr>
+            <td>{% trans 'Status' %}</td>
+            <td>{{ task.status }}</td>
+          </tr>
+          <tr>
+            <td>{% trans 'Date create' %}</td>
+            <td>{{ task.created_date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <a class="btn ml-5 btn-sm btn-outline-info rounded-pill my-md-1" href="{% url 'tasks:edit_task' task.id %}">{% trans 'Update' %}</a>
+    <a class="btn ml-3 btn-sm btn-outline-info rounded-pill" href="{% url 'tasks:delete_task' task.id %}">{% trans 'Delete' %}</a>
+</div>
+{% endblock %}

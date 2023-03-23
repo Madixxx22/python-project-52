@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+
+{% block content %}
+    <div class="container">
+        <h1 class="h1 text-dark">{% trans 'Tasks' %}</h1>
+        <a class="btn btn-info rounded-pill w-25 mb-3" href="{% url 'tasks:create_task' %}">{% trans 'Create task' %}</a>
+        <table class="table">
+            <thead class="table-info">
+                <tr class="text-center text-align-center">
+                    <th class="text-dark" scope="col">{% trans 'ID' %}</th>
+                    <th class="text-dark" scope="col">{% trans 'Name' %}</th>
+                    <th class="text-dark" scope="col">{% trans 'Status' %}</th>
+                    <th class="text-dark" scope="col">{% trans 'Author' %}</th>
+                    <th class="text-dark" scope="col">{% trans 'Executor' %}</th>
+                    <th class="text-dark" scope="col">{% trans 'Creation date' %}</th>
+                    <th class="text-dark" scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if tasks %}
+                    {% for task in tasks %}
+                        <tr class="border-bottom border-info text-center">
+                            <th scope="row" class="text-dark">{{ task.id }}</th>
+                            <td class="text-dark">
+                                <a class="text-decoration-none text-info" href="{% url "tasks:detail_task" task.id %}">{{ task.name }} </a>
+                            </td>
+                            <td class="text-dark">{{ task.status }}</td>
+                            <td class="text-dark">{{ task.author }}</td>
+                            <td class="text-dark">{{ task.executor }}</td>
+                            <td class="text-dark">{{ task.created_date }}</td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-info rounded-pill my-md-1" href="{% url 'tasks:edit_task' task.id %}">{% trans 'Update' %}</a>
+                                <br>
+                                <a class="btn btn-sm btn-outline-info rounded-pill" href="{% url 'tasks:delete_task' task.id %}">{% trans 'Delete' %}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

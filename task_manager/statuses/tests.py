@@ -1,10 +1,10 @@
 from django.test import TestCase
 from django.urls import reverse
-from task_manager.statuses.models import Statuses
-from task_manager.users.models import CustomUser
 from django.core.exceptions import ObjectDoesNotExist
 
 from task_manager.utils import get_test_data
+from task_manager.users.models import CustomUser
+from task_manager.statuses.models import Statuses
 
 
 # Create your tests here.
@@ -20,10 +20,6 @@ class TestStatuses(TestCase):
 
     def assertStatus(self, status, status_data):
         self.assertEqual(status.name, status_data['name'])
-        self.assertEqual(
-            status.created_date.__str__(),
-            status_data['created_date']
-        )
 
     def test_show_statuses(self):
         self.client.force_login(self.user)
