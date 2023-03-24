@@ -1,28 +1,27 @@
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from task_manager.mixins import BaseRequiredMixin
 
 from task_manager.statuses.models import Statuses
 from task_manager.statuses.forms import StatusForm
 
 
 # Create your views here.
-class StatusesView(LoginRequiredMixin, ListView):
+class StatusesView(BaseRequiredMixin, ListView):
     model = Statuses
     context_object_name = 'statuses'
     template_name = 'statuses/statuses.html'
 
 
-class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class StatusCreateView(BaseRequiredMixin, CreateView):
     template_name = 'statuses/create_status.html'
     form_class = StatusForm
     success_url = reverse_lazy('statuses:show_statuses')
     success_message = _('Created status successfully')
 
 
-class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class StatusUpdateView(BaseRequiredMixin, UpdateView):
     model = Statuses
     template_name = 'statuses/edit_status.html'
     form_class = StatusForm
@@ -33,7 +32,7 @@ class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         return Statuses.objects.filter(id=self.kwargs['pk'])
 
 
-class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class StatusDeleteView(BaseRequiredMixin, DeleteView):
     model = Statuses
     template_name = 'statuses/delete_status.html'
     success_url = reverse_lazy('statuses:show_statuses')
