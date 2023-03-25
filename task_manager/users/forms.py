@@ -1,3 +1,4 @@
+from typing import Any
 from django import forms
 from django.utils.translation import gettext as _
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
@@ -28,7 +29,7 @@ class CustomUserChangeForm(UserChangeForm):
         model = CustomUser
         fields = ("username", "first_name", "last_name", "password")
 
-    def save(self, commit=True):
+    def save(self, commit=True) -> Any:
         user = super().save(commit=False)
         password = self.cleaned_data.get('password')
 

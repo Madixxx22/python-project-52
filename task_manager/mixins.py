@@ -1,3 +1,4 @@
+from django import http
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib.messages import error
@@ -18,7 +19,12 @@ class BaseRequiredMixin(LoginRequiredMixin, SuccessMessageMixin):
 
 class UserRequiredMixin(BaseRequiredMixin):
 
-    def dispatch(self, request, *args, **kwargs):
+    def dispatch(
+        self,
+        request: http.HttpRequest,
+        *args: tuple,
+        **kwargs: dict
+    ) -> http.HttpResponse:
         if request.user.id == self.get_object().id:
             return super().dispatch(request, *args, **kwargs)
         error(request, self.error_messages)
@@ -30,7 +36,12 @@ class UserRequiredMixin(BaseRequiredMixin):
 
 class AuthorRequiredMixin(BaseRequiredMixin):
 
-    def dispatch(self, request, *args, **kwargs):
+    def dispatch(
+        self,
+        request: http.HttpRequest,
+        *args: tuple,
+        **kwargs: dict
+    ) -> http.HttpResponse:
         if request.user.id == self.get_object().author.id:
             return super().dispatch(request, *args, **kwargs)
         error(request, self.error_messages)

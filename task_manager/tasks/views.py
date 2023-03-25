@@ -1,4 +1,8 @@
+from typing import Any
+from django.db import models
 from django.urls import reverse_lazy
+from django.forms.forms import BaseForm
+from django.http.response import HttpResponse
 from django.utils.translation import gettext as _
 from django.views.generic import ListView, UpdateView, CreateView, \
                                  DeleteView, DetailView
@@ -12,7 +16,7 @@ from task_manager.users.models import CustomUser
 # Create your views here.
 class TaskBase():
 
-    def get_queryset(self):
+    def get_queryset(self) -> models.query.QuerySet[Any]:
         return Tasks.objects.filter(id=self.kwargs['pk'])
 
 
@@ -31,7 +35,7 @@ class TaskCreateView(BaseRequiredMixin, CreateView):
         'button': _('Create')
     }
 
-    def form_valid(self, form):
+    def form_valid(self, form: BaseForm) -> HttpResponse:
         user_pk = self.request.user.pk
         form.instance.author = CustomUser.objects.get(pk=user_pk)
         return super().form_valid(form)

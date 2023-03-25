@@ -1,3 +1,5 @@
+from typing import Any
+from django.db import models
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from django.contrib.messages.views import SuccessMessageMixin
@@ -38,7 +40,7 @@ class UserUpdateView(UserRequiredMixin, UpdateView):
         'button': _('Edit')
     }
 
-    def get_queryset(self):
+    def get_queryset(self) -> models.query.QuerySet[Any]:
         return CustomUser.objects.filter(id=self.kwargs['pk'])
 
 
