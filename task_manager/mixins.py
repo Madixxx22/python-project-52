@@ -9,6 +9,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 class BaseRequiredMixin(LoginRequiredMixin, SuccessMessageMixin):
     success_url = ""
     error_url = ""
+    template_name = "form.html"
     login_url = reverse_lazy('login')
     success_message = _('The action is successful')
     permission_denied_message = _('The action went wrong')

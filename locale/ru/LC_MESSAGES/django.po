@@ -179,7 +179,7 @@ msgstr "Удалить статус"
 
 #: task_manager/templates/tasks/detail_task.html:7
 msgid "View task"
-msgstr "Просмотр задачу"
+msgstr "Просмотр задачи"
 
 #: task_manager/templates/tasks/detail_task.html:16
 #: task_manager/templates/tasks/tasks.html:16

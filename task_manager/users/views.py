@@ -17,19 +17,26 @@ class UserView(ListView):
 
 
 class UserCreateView(SuccessMessageMixin, CreateView):
-    template_name = 'users/register.html'
+    template_name = 'form.html'
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
     success_message = _("User is successfully registered")
+    extra_context = {
+        'title': _('Registration user'),
+        'button': _('Register')
+    }
 
 
 class UserUpdateView(UserRequiredMixin, UpdateView):
     model = CustomUser
-    template_name = 'users/edit_user.html'
     form_class = CustomUserChangeForm
     success_url = reverse_lazy('users:show_users')
     success_message = _("User is changed successfully")
     permission_denied_message = _('You are not logged in, log in!')
+    extra_context = {
+        'title': _('Change user'),
+        'button': _('Edit')
+    }
 
     def get_queryset(self):
         return CustomUser.objects.filter(id=self.kwargs['pk'])

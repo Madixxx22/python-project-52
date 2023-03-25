@@ -15,18 +15,24 @@ class StatusesView(BaseRequiredMixin, ListView):
 
 
 class StatusCreateView(BaseRequiredMixin, CreateView):
-    template_name = 'statuses/create_status.html'
     form_class = StatusForm
     success_url = reverse_lazy('statuses:show_statuses')
     success_message = _('Created status successfully')
+    extra_context = {
+        'title': _('Create status'),
+        'button': _('Create')
+    }
 
 
 class StatusUpdateView(BaseRequiredMixin, UpdateView):
     model = Statuses
-    template_name = 'statuses/edit_status.html'
     form_class = StatusForm
     success_url = reverse_lazy('statuses:show_statuses')
     success_message = _('Updated status successfully')
+    extra_context = {
+        'title': _('Change status'),
+        'button': _('Edit')
+    }
 
     def get_queryset(self):
         return Statuses.objects.filter(id=self.kwargs['pk'])

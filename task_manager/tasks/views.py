@@ -23,10 +23,13 @@ class TasksView(BaseRequiredMixin, ListView):
 
 
 class TaskCreateView(BaseRequiredMixin, CreateView):
-    template_name = 'tasks/create_task.html'
     form_class = TaskForm
     success_url = reverse_lazy('tasks:show_tasks')
     success_message = _('Created task successfully')
+    extra_context = {
+        'title': _('Create task'),
+        'button': _('Create')
+    }
 
     def form_valid(self, form):
         user_pk = self.request.user.pk
@@ -42,10 +45,13 @@ class TaskDetailView(BaseRequiredMixin, TaskBase, DetailView):
 
 class TaskUpdateView(BaseRequiredMixin, TaskBase, UpdateView):
     model = Tasks
-    template_name = 'tasks/edit_task.html'
     form_class = TaskForm
     success_url = reverse_lazy('tasks:show_tasks')
     success_message = _('Updated task successfully')
+    extra_context = {
+        'title': _('Change task'),
+        'button': _('Edit')
+    }
 
 
 class TaskDeleteView(AuthorRequiredMixin, DeleteView):

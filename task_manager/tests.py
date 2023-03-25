@@ -23,7 +23,7 @@ class TestLogin(TestCase):
     def test_login_view(self):
         response = self.client.get(reverse('login'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, template_name='login.html')
+        self.assertTemplateUsed(response, template_name='form.html')
 
     def test_login(self):
         self.create_custom_user()

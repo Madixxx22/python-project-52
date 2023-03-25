@@ -7,7 +7,7 @@
     <h1 class="h1 text-dark">{% trans 'Delete Task' %}</h1>
     <form method="post">
         {% csrf_token %}
-        <p class="text-dark">{% trans 'Are you sure you want to delete the' %} <a class="text-decoration-none text-info" href="{% url 'tasks:show_tasks' %}">{{ task.name }}</a>?</p>
+        <p class="text-dark">{% trans 'Are you sure you want to delete the' %} <a class="text-decoration-none text-info" href="{% url 'tasks:detail_task' task.pk %}">{{ task.name }}</a>?</p>
         <input type="submit" class="btn btn-danger rounded-pill w-25" value="Delete">
     </form>
 </div>
