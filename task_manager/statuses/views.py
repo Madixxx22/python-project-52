@@ -46,5 +46,5 @@ class StatusDeleteView(DeleteProtectionMixin, DeleteView):
     success_url = reverse_lazy('statuses:show_statuses')
     success_message = _('Delete Status successfully')
     context_object_name = 'status'
-    error_messages = _("Deletion is not possible, the status is assigned to the task!")
+    error_messages = _("You can't delete a status used")
     protected_url = reverse_lazy('statuses:show_statuses')

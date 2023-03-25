@@ -50,7 +50,7 @@ class AuthorRequiredMixin(BaseRequiredMixin):
 
 
 class DeleteProtectionMixin(BaseRequiredMixin):
-    
+
     def post(
         self,
         request: http.HttpRequest,
@@ -58,8 +58,7 @@ class DeleteProtectionMixin(BaseRequiredMixin):
         **kwargs: dict
     ) -> http.HttpResponse:
         try:
-            super().post(request, *args, **kwargs)
-        except RestrictedError as e:
+            return super().post(request, *args, **kwargs)
+        except RestrictedError:
             error(request, self.error_messages)
             return redirect(self.protected_url)
-
