@@ -1,5 +1,6 @@
 {
     "create_success": {
+        "pk": 4,
         "username": "test",
         "first_name": "testik",
         "last_name": "testovich",
@@ -7,12 +8,14 @@
         "password2": "123456789"
     },
     "existing": {
+        "pk": 3,
         "username": "Honda",
         "first_name": "Civic",
         "last_name": "Galant",
         "password": "123456789"
     },
     "new": {
+        "pk": 3,
         "username": "Honda",
         "first_name": "Civic",
         "last_name": "Accord",
