@@ -3,7 +3,7 @@ from django.db import models
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from task_manager.mixins import BaseRequiredMixin
+from task_manager.mixins import BaseRequiredMixin, DeleteProtectionMixin
 
 from task_manager.statuses.models import Statuses
 from task_manager.statuses.forms import StatusForm
@@ -40,9 +40,11 @@ class StatusUpdateView(BaseRequiredMixin, UpdateView):
         return Statuses.objects.filter(id=self.kwargs['pk'])
 
 
-class StatusDeleteView(BaseRequiredMixin, DeleteView):
+class StatusDeleteView(DeleteProtectionMixin, DeleteView):
     model = Statuses
     template_name = 'statuses/delete_status.html'
     success_url = reverse_lazy('statuses:show_statuses')
     success_message = _('Delete Status successfully')
     context_object_name = 'status'
+    error_messages = _("Deletion is not possible, the status is assigned to the task!")
+    protected_url = reverse_lazy('statuses:show_statuses')

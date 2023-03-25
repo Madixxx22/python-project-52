@@ -1,6 +1,7 @@
 from django import http
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
+from django.db.models import RestrictedError
 from django.contrib.messages import error
 from django.utils.translation import gettext as _
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -46,3 +47,19 @@ class AuthorRequiredMixin(BaseRequiredMixin):
             return super().dispatch(request, *args, **kwargs)
         error(request, self.error_messages)
         return redirect(self.error_url)
+
+
+class DeleteProtectionMixin(BaseRequiredMixin):
+    
+    def post(
+        self,
+        request: http.HttpRequest,
+        *args: tuple,
+        **kwargs: dict
+    ) -> http.HttpResponse:
+        try:
+            super().post(request, *args, **kwargs)
+        except RestrictedError as e:
+            error(request, self.error_messages)
+            return redirect(self.protected_url)
+
